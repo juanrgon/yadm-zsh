@@ -5,4 +5,4 @@ _check_yadm_status () {
 }
 
 autoload -Uz add-zsh-hook
-add-zsh-hook preexec _check_yadm_status
+add-zsh-hook precmd _check_yadm_status
