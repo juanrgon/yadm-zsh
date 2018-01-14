@@ -1,6 +1,6 @@
 _yadm_status () {
     if [[ $(yadm status -s) ]]; then
-        echo "There are local configuration changes. Yadm sync required."
+        print -P '%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
     fi
 }
 
