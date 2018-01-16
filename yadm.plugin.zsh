@@ -6,7 +6,8 @@ _check_yadm_status () {
         branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
 
         ahead=$(git rev-list "${branch_name}"@{upstream}..HEAD 2>/dev/null | wc -l)
-        if [[ (( ahead )) ]]; then
+
+        if (( ahead )); then
             message='%B%F{magenta}There are local unpushed configuration commits. Run yadm push.%f%b'
         fi
     fi
