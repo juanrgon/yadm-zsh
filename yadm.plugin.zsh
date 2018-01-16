@@ -1,7 +1,17 @@
 _check_yadm_status () {
+    local message branch_name ahead
     if [[ $(yadm status -s) ]]; then
-        print -P '%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
+        message='%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
+    else
+        branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+        ahead=$(git rev-list "${branch_name}"@{upstream}..HEAD 2>/dev/null | wc -l)
+        if [[ (( ahead )) ]]; then
+            message='%B%F{magenta}There are local unpushed configuration commits. Run yadm push.%f%b'
+        fi
     fi
+
+    print -P $message
 }
 
 autoload -Uz add-zsh-hook
