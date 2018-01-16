@@ -1,7 +1,7 @@
 _check_yadm_status () {
-	if [[ $(yadm status -s) ]]; then
-		print -P '%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
-	fi
+    if [[ $(yadm status -s) ]]; then
+        print -P '%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
+    fi
 }
 
 autoload -Uz add-zsh-hook
@@ -10,6 +10,7 @@ add-zsh-hook precmd _check_yadm_status
 # Aliases
 alias y=yadm
 alias ya='yadm add'
+alias yaa='yadm add -u'
 alias yap='yadm apply'
 alias yapa='yadm add --patch'
 alias yau='yadm add --update'
