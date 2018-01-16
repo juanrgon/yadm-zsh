@@ -3,12 +3,12 @@ _check_yadm_status () {
     if [[ $(yadm status -s) ]]; then
         message='%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
     else
-        branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
+        branch_name=$(yadm symbolic-ref --short HEAD 2>/dev/null)
 
-        ahead=$(git rev-list "${branch_name}"@{upstream}..HEAD 2>/dev/null | wc -l)
+        ahead=$(yadm rev-list "${branch_name}"@{upstream}..HEAD 2>/dev/null | wc -l)
 
         if (( ahead )); then
-            message='%B%F{magenta}There are local unpushed configuration commits. Run yadm push.%f%b'
+            message='%B%F{magenta}Run yadm push.%f%b'
         fi
     fi
 
