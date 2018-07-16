@@ -23,13 +23,13 @@ _update_yadm_status () {
 _prompt_yadm_status () {
     if [[ $YADM_STATUS -eq 1 ]]; then
         print -P '%B%F{magenta}There are local configuration changes. Yadm sync required.%f%b'
-    elif [[ $YADM_STATUS -eq 2 ]]
+    elif [[ $YADM_STATUS -eq 2 ]]; then
         print -P '%B%F{magenta}Run yadm push.%f%b'
     fi
 }
 
 autoload -Uz add-zsh-hook
-add-zsh-hook periodic _check_yadm_status
+add-zsh-hook periodic _update_yadm_status
 add-zsh-hook precmd _prompt_yadm_status
 
 # Aliases
